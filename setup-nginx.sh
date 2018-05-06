@@ -63,8 +63,13 @@ export LC_ALL=en_US.UTF-8;
 export LANG=en_US.UTF-8;
 export LC_TYPE=en_US.UTF-8;
 
+# run apt update and upgrade
 apt-get update;
 apt-get upgrade -y;
+
+# Install ClamAV
+apt-get install clamav;
+echo -e "02 1 * * * root clamscan -R /var/www" >> /var/spool/cron/crontabs/root;
 
 # Install Unzip
 apt-get install unzip -y;
