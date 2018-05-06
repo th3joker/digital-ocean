@@ -177,6 +177,16 @@ sed -i.bak '665i \UNBLOCK_REPORT = "/etc/csf/scripts/cloudflare/unblock.sh"\' /e
 # Restart CSF
 csf -r;
 
+# Install Root Kit Hunter
+apt-get install rkhunter -y;
+# fix rkhunter update bug
+sed -i 's/UPDATE_MIRRORS=0/UPDATE_MIRRORS=1/g' /etc/rkhunter.conf;
+sed -i 's/MIRRORS_MODE=1/MIRRORS_MODE=0/g' /etc/rkhunter.conf;
+sed -i 's\WEB_CMD="/bin/false"\WEB_CMD=""\g' /etc/rkhunter.conf;
+# add crontab to run rootkit hunter
+echo -e "# run rootkit hunter
+15 04 * * * /usr/bin/rkhunter --cronjob --update --quiet" >> /var/spool/cron/crontabs/root;
+
 #creating of swap
 echo -e "On next step we going to create SWAP (it should be your RAM x2)..."
 

@@ -117,6 +117,16 @@ sed -i 's/TCP_IN = "20,21,22,25,53,80,110,143,443,465,587,993,995"/TCP_IN = "20,
 # Restart CSF
 csf -r;
 
+# Install Root Kit Hunter
+apt-get install rkhunter -y;
+# fix rkhunter update bug
+sed -i 's/UPDATE_MIRRORS=0/UPDATE_MIRRORS=1/g' /etc/rkhunter.conf;
+sed -i 's/MIRRORS_MODE=1/MIRRORS_MODE=0/g' /etc/rkhunter.conf;
+sed -i 's\WEB_CMD="/bin/false"\WEB_CMD=""\g' /etc/rkhunter.conf;
+# add crontab to run rootkit hunter
+echo -e "# run rootkit hunter
+15 04 * * * /usr/bin/rkhunter --cronjob --update --quiet" >> /var/spool/cron/crontabs/root;
+
 #creating of swap
 echo -e "On next step we going to create SWAP (it should be your RAM x2)..."
 
@@ -172,4 +182,5 @@ cat /etc/csf/csf.ignore;
 
 echo "csf.allow Check"
 cat /etc/csf/csf.allow;
+
 
