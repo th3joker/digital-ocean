@@ -114,6 +114,7 @@ alias aptr='sudo apt-get remove'" >> /home/$username/.bashrc;
 ## change ssh options, port 55022, no root logins and ssh key only ##
 echo "Changing sshd service options to port $sshport, no root logins and ssh key only"
 sed -i "s/#Port 22/Port $sshport/g" /etc/ssh/sshd_config;
+sed -i "s/#Port 22/Port $sshport/g" /etc/ssh/sshd_config;
 sed -i "s/PermitRootLogin yes/PermitRootLogin without-password/g"  /etc/ssh/sshd_config;
 sed -i "s/#\PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config;
 service ssh restart;
