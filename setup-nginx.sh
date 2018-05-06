@@ -157,8 +157,8 @@ sed -i 's/#STOPFORUMSPAM/STOPFORUMSPAM/g' /etc/csf/csf.blocklists;
 sed -i 's/#STOPFORUMSPAMV6/STOPFORUMSPAMV6/g' /etc/csf/csf.blocklists;
 sed -i 's/#GREENSNOW/GREENSNOW/g' /etc/csf/csf.blocklists;
 
-# check port open in csf.conf
-sed -i "s/20,21,22,25,53,80,110,143,443,465,587,993,995/20,21,22,25,53,80,110,143,443,465,587,993,995,$sshport/g" /etc/csf/csf.conf;
+# check port open in csf.conf close extraneous ports
+sed -i "s/20,21,22,25,53,80,110,143,443,465,587,993,995/80,443,$sshport/g" /etc/csf/csf.conf;
 sed -i "s/$sshport,$sshport/$sshport/g" /etc/csf/csf.conf;
 
 # setup CSF like fail2ban
