@@ -205,9 +205,9 @@ apt-get autoremove -y;
 # Password stuff
 echo "Adding password for $username"
 ## add user password ##
-echo "Please enter the new password:"
+echo "Please enter the new password for $username:"
 read -s password1
-echo "Please repeat the new password:"
+echo "Please repeat the new password for $username:"
 read -s password2
 # Check both passwords match
 if [ $password1 != $password2 ]; then
