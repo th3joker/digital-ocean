@@ -201,6 +201,12 @@ case $response in
         ;;
 esac
 
+# set mail name
+hostname >> /etc/mailname;
+sed -i 's/#myorigin/myorigin/g' /etc/postfix/main.cf;
+service postfix restart
+
+# autoremove apps not needed
 apt-get autoremove -y;
 
 # Password stuff
