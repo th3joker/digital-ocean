@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Set Variables
+## Set Variables
 # My IP
 myip=$(echo $SSH_CLIENT | awk '{ print $1}')
 
