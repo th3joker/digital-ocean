@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Set Variables
+# Set Variables
 # My IP
 myip=$(echo $SSH_CLIENT | awk '{ print $1}')
 
@@ -157,7 +157,7 @@ sed -i 's/#STOPFORUMSPAMV6/STOPFORUMSPAMV6/g' /etc/csf/csf.blocklists;
 sed -i 's/#GREENSNOW/GREENSNOW/g' /etc/csf/csf.blocklists;
 
 # check port open in csf.conf
-sed -i 's/TCP_IN = "20,21,22,25,53,80,110,143,443,465,587,993,995"/TCP_IN = "20,21,22,25,53,80,110,143,443,465,587,993,995,$sshport"/g' /etc/csf/csf.conf;
+sed -i "s/20,21,22,25,53,80,110,143,443,465,587,993,995/20,21,22,25,53,80,110,143,443,465,587,993,995,$sshport/g" /etc/csf/csf.conf;
 
 # Restart CSF
 csf -r;
