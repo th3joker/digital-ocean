@@ -68,7 +68,7 @@ apt-get update;
 apt-get upgrade -y;
 
 # Install ClamAV
-apt-get install clamav;
+apt-get install clamav -y;
 echo -e "02 1 * * * root clamscan -R /var/www" >> /var/spool/cron/crontabs/root;
 
 # Install Unzip
